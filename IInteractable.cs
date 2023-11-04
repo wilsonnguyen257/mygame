@@ -2,6 +2,6 @@
 {
     public interface IInteractable
     {
-        void Interact(Player player, Visitor visitor, Animal animal);
+        public void Interact(Player player, Visitor visitor, Animal animal);
     }
 }

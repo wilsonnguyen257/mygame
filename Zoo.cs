@@ -67,8 +67,9 @@ namespace GameConsole
 
                 // Draw the hunger level below the avatar
                 window.DrawText($"Hunger: {animal.HungerLevel}", Color.Black, x, y + avatarHeight + 15); // Adjust text position if necessary
-                window.DrawText($"Happiness: {animal.HappinessLevel}", Color.Black, x, y + avatarHeight +25);
-                window.DrawText($"Age: {animal.Age}", Color.Black, x, y + avatarHeight +35);
+                window.DrawText($"Happiness: {animal.HappinessLevel}", Color.Black, x, y + avatarHeight + 25);
+                window.DrawText($"Age: {animal.Age}", Color.Black, x, y + avatarHeight + 35);
+                window.DrawText($"Value: {animal.Price}", Color.Black, x, y + avatarHeight + 45);
             }
         }
 
