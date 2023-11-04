@@ -9,15 +9,35 @@ namespace GameConsole
         private int _hungerLevel;
         private int _happinessLevel;
         private int _age;
+        private Bitmap _avatar;
 
 
-        public Animal(string name, int price, int feedcost, int age) : base(name)
+        public Animal(string name, int price, int feedcost, int age, string bitmapPath) : base(name)
         {
             _price = price;
             _feedcost = feedcost;
             _hungerLevel = 50;
             _happinessLevel = 10;
             _age = age;
+            // Load the bitmap for the animal's avatar
+            _avatar = SplashKit.LoadBitmap(name, bitmapPath);
+        }
+
+        public Bitmap Avatar 
+        {
+            get { return _avatar; }  
+        }
+
+        // Add a method to draw the animal's avatar
+        public void DrawAvatar(Window window, float x, float y)
+        {
+            window.DrawBitmap(Avatar, x, y);
+        }
+
+        // Make sure to release the bitmap when the animal is no longer needed
+        public void ReleaseResources()
+        {
+            SplashKit.FreeBitmap(Avatar);
         }
 
         public int HappinessLevel 

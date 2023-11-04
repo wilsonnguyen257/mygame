@@ -62,13 +62,15 @@ namespace GameConsole
                 // Draw the name of the animal above the avatar
                 window.DrawText(animal.Name, Color.Black, x, y + avatarHeight + 5); // Adjust text position if necessary
 
+                // Use the new separate method to draw the animal's avatar
+                animal.DrawAvatar(window, x, y);
+
                 // Draw the hunger level below the avatar
                 window.DrawText($"Hunger: {animal.HungerLevel}", Color.Black, x, y + avatarHeight + 15); // Adjust text position if necessary
                 window.DrawText($"Happiness: {animal.HappinessLevel}", Color.Black, x, y + avatarHeight +25);
                 window.DrawText($"Age: {animal.Age}", Color.Black, x, y + avatarHeight +35);
             }
         }
-
 
         private void InteractWithAnimals(Player player, Visitor visitor)
         {
@@ -89,13 +91,13 @@ namespace GameConsole
             List<Animal> availableAnimals = new List<Animal>();
             Random randomAge = new Random();
             Random randomPrice = new Random();
-            availableAnimals.Add(new Lion("Leo - Lion", randomPrice.Next(100), randomAge.Next(50)));
-            availableAnimals.Add(new Parrot("Polly - Parrot", randomPrice.Next(35), randomAge.Next(30)));
-            availableAnimals.Add(new Snake("Sly - Snake", randomPrice.Next(10), randomAge.Next(10)));
-            availableAnimals.Add(new Mammal("Kitty - Cat", randomPrice.Next(20), randomAge.Next(20)));
-            availableAnimals.Add(new Bird("Kar - Owl", randomPrice.Next(40), randomAge.Next(40)));
-            availableAnimals.Add(new Reptile("Brok - Dinosaur", randomPrice.Next(200), randomAge.Next(120)));
-            availableAnimals.Add(new Mammal("Xash - Kangaroo", randomPrice.Next(70), randomAge.Next(70)));
+            availableAnimals.Add(new Lion("Leo - Lion", randomPrice.Next(100), randomAge.Next(50), "lion.png"));
+            availableAnimals.Add(new Parrot("Polly - Parrot", randomPrice.Next(35), randomAge.Next(30), "parrot.png"));
+            availableAnimals.Add(new Snake("Sly - Snake", randomPrice.Next(10), randomAge.Next(10), "snake.png"));
+            availableAnimals.Add(new Mammal("Kitty - Cat", randomPrice.Next(20), randomAge.Next(20), "cat.png"));
+            availableAnimals.Add(new Bird("Kar - Owl", randomPrice.Next(40), randomAge.Next(40), "owl.png"));
+            availableAnimals.Add(new Reptile("Brok - Dinosaur", randomPrice.Next(200), randomAge.Next(120), "dinosour.png"));
+            availableAnimals.Add(new Mammal("Xash - Kangaroo", randomPrice.Next(70), randomAge.Next(70), "kangaroo.png"));
             return availableAnimals;
         }
 
@@ -169,59 +171,6 @@ namespace GameConsole
             }
             return selected - 1; // Adjust for 0-based indexing
         }
-
-        //public void BuyAnimalFromSupplier(Player player)
-        //{
-        //    List<Animal> animalsForSale = GetAnimalsForSale();
-        //    Console.WriteLine("Animals available for purchase from supplier:");
-        //    int i = 0;
-        //    foreach (Animal animal in animalsForSale)
-        //    {
-        //        i += 1;
-        //        Console.WriteLine($"{i}. {animal.Name} - {animal.Price} coins, Age: {animal.Age}.");
-        //    }
-        //    Console.Write("Select the animal you want to buy: ");
-        //    int selected;
-        //    while (!int.TryParse(Console.ReadLine(), out selected))
-        //    {
-        //        Console.Write("Invalid input, please enter a number: ");
-        //    }
-        //    selected -= 1;
-        //    if (selected >= 0 && selected < animalsForSale.Count)
-        //    {
-        //        Animal animalToBuy = animalsForSale[selected];
-        //        if (player.Money >= animalToBuy.Price)
-        //        {
-        //            _animals.Add(animalToBuy);
-        //            _drawableAnimals.Add(animalToBuy);
-        //            player.Money -= animalToBuy.Price;
-        //            Console.WriteLine($"You bought a {animalToBuy.Name} for {animalToBuy.Price} coins.");
-        //            Console.Write("Do you want a new name for this animal? (yes/no): ");
-        //            string choose = "";
-        //            do
-        //            {
-        //                choose = Console.ReadLine();
-        //                if (choose != "yes" && choose != "no") Console.Write("Invalid input, enter again: ");
-        //            } while (choose != "yes" && choose != "no");
-        //            if (choose == "yes") 
-        //            {
-        //                Console.Write("Enter a new name for this animal: ");
-        //                string name = Console.ReadLine();
-        //                Console.WriteLine($"Set {name} as a new name for the animal.");
-        //                animalToBuy.Name = name; 
-        //            }
-
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Not enough money to buy this animal.");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Invalid selection.");
-        //    }
-        //}
 
         public void SellAnimal(Player player)
         {

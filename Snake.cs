@@ -2,7 +2,7 @@
 {
     public class Snake : Reptile
     {
-        public Snake(string name, int price, int age) : base(name, price, age) 
+        public Snake(string name, int price, int age, string bitmapPath) : base(name, price, age, bitmapPath) 
         {
         }
 

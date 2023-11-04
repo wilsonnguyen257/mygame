@@ -53,6 +53,12 @@ namespace GameConsole
                 SplashKit.Delay(60);
             }
 
+            // Release resources before closing the game
+            foreach (Animal animal in zoo.GetAnimalsForSale())
+            {
+                animal.ReleaseResources();
+            }
+
             consoleThread.Join(); // Wait for the console thread to finish if it's still running
             w.Close(); // Close the graphical window
         }

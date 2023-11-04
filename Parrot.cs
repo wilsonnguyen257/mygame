@@ -2,7 +2,7 @@
 {
     public class Parrot : Bird
     {
-        public Parrot(string name, int price, int age) : base(name, price, age) { }
+        public Parrot(string name, int price, int age, string bitmapPath) : base(name, price, age, bitmapPath) { }
 
         public override void Speak()
         {
