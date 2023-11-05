@@ -1,6 +1,6 @@
 ﻿namespace GameConsole
 {
-    public interface IInteractable
+    public interface IInteract
     {
         public void Interact(Player player, Visitor visitor, Animal animal);
     }

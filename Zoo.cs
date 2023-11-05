@@ -95,10 +95,10 @@ namespace GameConsole
             availableAnimals.Add(new Lion("Leo - Lion", randomPrice.Next(100), randomAge.Next(50), "lion.png"));
             availableAnimals.Add(new Parrot("Polly - Parrot", randomPrice.Next(35), randomAge.Next(30), "parrot.png"));
             availableAnimals.Add(new Snake("Sly - Snake", randomPrice.Next(10), randomAge.Next(10), "snake.png"));
-            availableAnimals.Add(new Mammal("Kitty - Cat", randomPrice.Next(20), randomAge.Next(20), "cat.png"));
-            availableAnimals.Add(new Bird("Kar - Owl", randomPrice.Next(40), randomAge.Next(40), "owl.png"));
-            availableAnimals.Add(new Reptile("Brok - Dinosaur", randomPrice.Next(200), randomAge.Next(120), "dinosour.png"));
-            availableAnimals.Add(new Mammal("Xash - Kangaroo", randomPrice.Next(70), randomAge.Next(70), "kangaroo.png"));
+            availableAnimals.Add(AnimalFactory.CreateAnimal(AnimalType.Mammal,"Kitty - Cat", randomPrice.Next(20), randomAge.Next(20), "cat.png"));
+            availableAnimals.Add(AnimalFactory.CreateAnimal(AnimalType.Bird, "Kar - Owl", randomPrice.Next(40), randomAge.Next(40), "owl.png"));
+            availableAnimals.Add(AnimalFactory.CreateAnimal(AnimalType.Reptile, "Brok - Dinosaur", randomPrice.Next(200), randomAge.Next(120), "dinosour.png"));
+            availableAnimals.Add(AnimalFactory.CreateAnimal(AnimalType.Mammal, "Xash - Kangaroo", randomPrice.Next(70), randomAge.Next(70), "kangaroo.png"));
             return availableAnimals;
         }
 
@@ -154,13 +154,19 @@ namespace GameConsole
         {
             Console.Write("Do you want a new name for this animal? (yes/no): ");
             string choice = Console.ReadLine().Trim().ToLower();
+            while (choice != "yes" && choice != "no")
+            {
+                Console.Write("Enter your choice again: ");
+                choice = Console.ReadLine().Trim().ToLower();
+                
+            }
             if (choice == "yes")
             {
                 Console.Write("Enter a new name for this animal: ");
                 animal.Name = Console.ReadLine();
                 Console.WriteLine($"The animal has been renamed to {animal.Name}.");
             }
-        }
+}
 
         private int GetAnimalSelectionFromUser()
         {

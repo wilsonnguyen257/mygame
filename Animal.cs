@@ -67,7 +67,6 @@ namespace GameConsole
             set { _price = value; }
         }
 
-
         public abstract void Feed(Player player);
         public abstract void Interact();
     }

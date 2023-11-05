@@ -18,7 +18,6 @@ namespace GameConsole
             Visitor Bob = new Child("Bob", 20);
             Visitor Wilson = new Adult("Wilson", 10);
             Visitor Helen = new Adult("Helen", 10);
-            Visitor Guest = new Visitor("Guest", 10);
 
             zoo.AddVisitors(Helen);
             zoo.AddVisitors(Wilson);
