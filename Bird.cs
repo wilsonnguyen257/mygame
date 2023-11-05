@@ -13,7 +13,7 @@
 
         public override void Feed(Player player)
         {
-            if (HungerLevel == 0)
+            if (HungerLevel < 50)
             {
                 Console.WriteLine($"{Name} is not hungry right now.");
                 return;
@@ -26,6 +26,7 @@
                 if (HungerLevel == 0) Console.WriteLine($"{Name} is now full.");
                 else Console.WriteLine($"{Name} is now less hungry.");
                 player.Money -= FeedCost;
+                HappinessLevel += 1;
             } 
             else
             {
@@ -38,6 +39,7 @@
             if (HungerLevel >= 80)
             {
                 Console.WriteLine($"{Name} is too hungry to interact right now.");
+                HappinessLevel -= 3;
                 return;
             }
             Speak();

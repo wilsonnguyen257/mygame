@@ -54,7 +54,7 @@ namespace GameConsole
                 int row = i / animalsPerRow;
                 int col = i % animalsPerRow;
                 int x = startX + col * (avatarWidth + padding + 15);
-                int y = startY + row * (avatarHeight + padding + 40); // Additional 40 pixels for text height above the avatar
+                int y = startY + row * (avatarHeight + padding + 60); // Additional 40 pixels for text height above the avatar
 
                 // Draw the animal's avatar (Placeholder for your actual drawing logic)
                 window.DrawRectangle(Color.Gray, x, y, avatarWidth, avatarHeight);
@@ -70,6 +70,18 @@ namespace GameConsole
                 window.DrawText($"Happiness: {animal.HappinessLevel}", Color.Black, x, y + avatarHeight + 25);
                 window.DrawText($"Age: {animal.Age}", Color.Black, x, y + avatarHeight + 35);
                 window.DrawText($"Value: {animal.Price}", Color.Black, x, y + avatarHeight + 45);
+                if (animal.HungerLevel >= 80)
+                {
+                    window.DrawText("Status: Hungry", Color.Black, x, y + avatarHeight + 55);
+                }
+                else if (animal.HungerLevel <= 50 && animal.HappinessLevel >= 8)
+                {
+                    window.DrawText("Status: Happy", Color.Black, x, y + avatarHeight + 55);
+                }
+                else
+                {
+                    window.DrawText("Status: Normal", Color.Black, x, y + avatarHeight + 55);
+                }
             }
         }
 
@@ -109,13 +121,13 @@ namespace GameConsole
 
         public void BuyAnimalFromSupplier(Player player)
         {
-            DisplayAnimalsForSale();
+            List<Animal> animalList = DisplayAnimalsForSale();
 
             int selected = GetAnimalSelectionFromUser();
-            AttemptToPurchaseAnimal(selected, player);
+            AttemptToPurchaseAnimal(selected, player, animalList);
         }
 
-        private void DisplayAnimalsForSale()
+        private List<Animal> DisplayAnimalsForSale()
         {
             List<Animal> animalsForSale = GetAnimalsForSale();
             Console.WriteLine("Animals available for purchase from supplier:");
@@ -123,11 +135,11 @@ namespace GameConsole
             {
                 Console.WriteLine($"{i + 1}. {animalsForSale[i].Name} - {animalsForSale[i].Price} coins, Age: {animalsForSale[i].Age}.");
             }
+            return animalsForSale;
         }
 
-        private void AttemptToPurchaseAnimal(int animalIndex, Player player)
+        private void AttemptToPurchaseAnimal(int animalIndex, Player player, List<Animal> animalsForSale)
         {
-            List<Animal> animalsForSale = GetAnimalsForSale();
             if (animalIndex >= 0 && animalIndex < animalsForSale.Count)
             {
                 Animal animalToBuy = animalsForSale[animalIndex];

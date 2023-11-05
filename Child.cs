@@ -15,7 +15,7 @@
                     player.Money += 3; // Increase player's money for interaction
                     visitor.Money -= 3;
                     Console.WriteLine("+3 coins.\n");
-                    animal.HappinessLevel += 10;
+                    animal.HappinessLevel += 2;
                 }
                 else
                 {
